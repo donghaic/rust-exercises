@@ -55,7 +55,7 @@ impl FromRedisValue for AdIdExpCfg {
 }
 
 impl ToRedisArgs for AdIdExpCfg {
-    fn write_redis_args<W>(&self, out: &mut W)
+    fn write_redis_args<W>(&self, out: & W)
     where
         W: ?Sized + RedisWrite,
     {

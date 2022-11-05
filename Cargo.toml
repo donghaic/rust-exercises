@@ -9,6 +9,7 @@ edition = "2021"
 members = [
     "example01",
     "redis-pools",
+    "adx-base",
 ]
 
 [dependencies]
