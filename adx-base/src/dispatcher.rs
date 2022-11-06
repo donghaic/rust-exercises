@@ -4,10 +4,10 @@ use anyhow::{anyhow, Result};
 use async_trait::async_trait;
 use reqwest::Client;
 
-use crate::{bidders::Bidder, types::*};
-use crate::bidders::MyBidder;
+use crate::{bidder::Bidder, types::*};
+use crate::bidder::MyBidder;
 
-pub const DefaultBidderId: u64 = 1;
+pub const DEFAULT_BIDDER_ID: u64 = 1;
 
 #[async_trait]
 trait AdaptedBidder {
@@ -45,11 +45,11 @@ impl BidderAdapter {
 
 impl BidderAdapter {
     pub async fn request_bid(&self, http_client: &Client, ctx: &AdxContext<'_>, ad_campaign: &AdCampaign, ad_source: AdSource) -> Result<BidderResponse> {
-        let requestData = self.bidder.make_requests(ctx, ad_campaign, &ad_source).await?;
+        let request_data = self.bidder.make_requests(ctx, ad_campaign, &ad_source).await?;
         let call_info = self.do_request(http_client, ctx, ad_campaign, &ad_source).await?;
         let bid = self.bidder.make_bids(ctx, ad_campaign, &call_info.response_data).await?;
         // todo!()
-        Ok(BidderResponse {})
+        Ok(BidderResponse { ad_campaign: todo!(), ad_source, bid_response: todo!() })
     }
 
     async fn do_request(&self, http_client: &Client, ctx: &AdxContext<'_>, ad_campaign: &AdCampaign, ad_source: &AdSource) -> Result<HttpCallInfo> {

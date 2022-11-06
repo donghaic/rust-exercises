@@ -1,9 +1,13 @@
 use types::*;
 
-mod types;
-mod bidders;
-mod filters;
-mod dispatcher;
-mod exchange;
-mod dao;
+pub mod dao;
+pub mod types;
+pub mod bidder;
+pub mod filter;
+pub mod dispatcher;
+pub mod exchange;
+pub mod validator;
+pub mod indexer;
 
+pub use exchange::*;
+pub use dao::*;

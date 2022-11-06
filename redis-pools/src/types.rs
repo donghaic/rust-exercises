@@ -1,8 +1,9 @@
+use std::collections::HashMap;
+
 use bb8_redis::redis::{
     from_redis_value, FromRedisValue, RedisResult, RedisWrite, ToRedisArgs, Value,
 };
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 
 #[derive(Debug, Default)]
 pub struct AbParams {
@@ -55,9 +56,9 @@ impl FromRedisValue for AdIdExpCfg {
 }
 
 impl ToRedisArgs for AdIdExpCfg {
-    fn write_redis_args<W>(&self, out: & W)
-    where
-        W: ?Sized + RedisWrite,
+    fn write_redis_args<W>(&self, out: &W)
+        where
+            W: ?Sized + RedisWrite,
     {
         out.write_arg(serde_json::to_string(self).unwrap().as_bytes())
     }

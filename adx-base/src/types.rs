@@ -1,6 +1,7 @@
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
-use std::sync::{Arc, RwLock};
+
+use anyhow::Result;
 
 #[derive(Debug, Clone)]
 pub struct AdSource {
@@ -51,11 +52,12 @@ pub struct AdxContext<'a> {
     pub media: &'a Media,
     pub bid_request: BidRequest,
 
-   // pub err_code: RefCell<RwLock<HashMap<u64, String>>>,
+    // pub err_code: RefCell<RwLock<HashMap<u64, String>>>,
 }
 
 pub struct BidResponse {
     pub id: String,
+    pub bidfloor: u16,
 }
 
 pub struct BidRequest {
@@ -63,7 +65,11 @@ pub struct BidRequest {
     pub device_id: String,
 }
 
-pub struct BidderResponse {}
+pub struct BidderResponse {
+    pub ad_campaign: AdCampaign,
+    pub ad_source: AdSource,
+    pub bid_response: Result<BidResponse>,
+}
 
 pub struct HttpCallInfo {
     pub response_data: HttpResponseData,

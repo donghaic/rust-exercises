@@ -5,8 +5,9 @@ mod tests {
     use std::collections::HashMap;
     use std::error::Error;
 
-    use bb8_redis::redis::RedisResult;
     use bb8_redis::{bb8, redis::AsyncCommands, RedisConnectionManager};
+    use bb8_redis::redis::RedisResult;
+
     use crate::types::{AbParams, AdIdExpCfg};
 
     use super::*;
