@@ -2,6 +2,7 @@ use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 
 use anyhow::Result;
+use reqwest::Method;
 
 #[derive(Debug, Clone)]
 pub struct AdSource {
@@ -15,17 +16,18 @@ pub struct HttpResponseData {
 }
 
 pub struct HttpRequestData {
-    pub method: String,
+    pub method: Method,
     pub uri: String,
     pub body: Vec<u8>,
 }
 
 
+#[derive(Debug)]
 pub struct Adslot {
     pub id: u64,
 }
 
-
+#[derive(Debug)]
 pub struct Media {
     pub id: u64,
 }
@@ -48,7 +50,7 @@ impl AdCampaign {
 
 pub struct AdxContext<'a> {
     pub req_id: String,
-    pub ad_slot: &'a Adslot,
+    pub adslot: &'a Adslot,
     pub media: &'a Media,
     pub bid_request: BidRequest,
 

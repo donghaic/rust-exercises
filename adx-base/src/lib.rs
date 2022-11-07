@@ -1,3 +1,5 @@
+pub use dao::*;
+pub use exchange::*;
 use types::*;
 
 pub mod dao;
@@ -8,6 +10,5 @@ pub mod dispatcher;
 pub mod exchange;
 pub mod validator;
 pub mod indexer;
+pub mod errors;
 
-pub use exchange::*;
-pub use dao::*;

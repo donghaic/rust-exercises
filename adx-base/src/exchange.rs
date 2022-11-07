@@ -9,15 +9,15 @@ use crate::dispatcher::*;
 use crate::filter::AdFilterChain;
 use crate::validator::BidValidatorChain;
 
-pub struct Exchange {
-    adx_db: AdxDB,
+pub struct Exchange<'a> {
+    adx_db: &'a AdxDB,
     ad_filters: AdFilterChain,
-    bidders: HashMap<u64, BidderAdapter>,
+    bidders: HashMap<u64, BidderDispatcher>,
     bid_validators: BidValidatorChain,
 }
 
-impl Exchange {
-    pub fn new(adx_db: AdxDB) -> Self {
+impl<'a> Exchange<'a> {
+    pub fn new(adx_db: &'a AdxDB) -> Exchange<'a> {
         Self {
             adx_db,
             ad_filters: AdFilterChain::new(),
@@ -27,7 +27,7 @@ impl Exchange {
     }
 
     pub async fn auction(&self, ctx: &mut AdxContext<'_>) -> Result<AuctionResult> {
-        let ad_campaigns = self.adx_db.get_campaigns(ctx.ad_slot);
+        let ad_campaigns = self.adx_db.get_campaigns(ctx.adslot);
 
         let filtered_campaigns = self.ad_filters.do_filter(ctx, &ad_campaigns).await?;
 
@@ -37,7 +37,7 @@ impl Exchange {
 
         // TODO run a GSP biding auction.
 
-        Ok(AuctionResult{})
+        Ok(AuctionResult {})
     }
 
     async fn get_bids(&self, ctx: &mut AdxContext<'_>, ad_campaigns: &Vec<AdCampaign>) -> Result<Vec<BidderResponse>> {

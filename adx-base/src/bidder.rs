@@ -1,5 +1,6 @@
 use anyhow::Result;
 use async_trait::async_trait;
+use reqwest::Method;
 
 use crate::types::*;
 
@@ -23,7 +24,7 @@ impl MyBidder {
 impl Bidder for MyBidder {
     async fn make_requests(&self, ctx: &AdxContext, ad_campaign: &AdCampaign, ad_source: &AdSource) -> Result<HttpRequestData> {
         Ok(HttpRequestData {
-            method: "".to_string(),
+            method: Method::GET,
             uri: "".to_string(),
             body: vec![],
         })

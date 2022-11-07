@@ -1,17 +1,33 @@
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
+use std::hash::Hash;
 
-use crate::AdSource;
-use crate::types::{AdCampaign, Adslot};
+use anyhow::{Context, Result};
+
+use crate::{AdSource, Media};
+use crate::errors::*;
 use crate::indexer::*;
+use crate::types::{AdCampaign, Adslot};
 
-#[derive(Debug, Clone)]
+#[derive(Debug)]
 pub struct AdxDB {
-    indexer : Indexer,
+    indexer: Indexer,
+
+    adslot_map: HashMap<u64, Adslot>,
+    media_map: HashMap<u64, Media>,
 }
 
 impl AdxDB {
-    pub fn new(indexer : Indexer) -> AdxDB {
-        AdxDB {indexer}
+    pub fn new(indexer: Indexer) -> AdxDB {
+        AdxDB { indexer, adslot_map: HashMap::default(), media_map: HashMap::new() }
+    }
+
+
+    pub fn get_adslot_by_id(&self, id: u64) -> Result<&Adslot> {
+        return self.adslot_map.get(&id).context("media not found");
+    }
+
+    pub fn get_media_by_id(&self, id: u64) -> Result<&Media> {
+        return self.media_map.get(&id).context("media not found");
     }
 
     pub fn get_campaigns(&self, adslot: &Adslot) -> Vec<AdCampaign> {

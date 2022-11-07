@@ -21,7 +21,7 @@ impl AdFilterChain {
         simple_filters.push(Box::new(DeviceIdFilter::new()));
         simple_filters.push(Box::new(PacingFilter::new()));
 
- 
+
         Self { simple_filters }
     }
 
