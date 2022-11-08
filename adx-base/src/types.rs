@@ -30,6 +30,7 @@ pub struct Adslot {
 #[derive(Debug)]
 pub struct Media {
     pub id: u64,
+    pub name: String,
 }
 
 #[derive(Debug, Clone)]
