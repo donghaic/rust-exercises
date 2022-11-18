@@ -117,7 +117,18 @@ checksum = "b081e2864000416c5a4543fed63fb8dd979c4a0806b071fddab0e548c6cd4c74"
 dependencies = [
  "async-trait",
  "bb8",
- "redis",
+ "redis 0.21.5",
+]
+
+[[package]]
+name = "bb8-redis"
+version = "0.12.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8310da711a26fa0326202261abd73a414340f3ec957f63927a055511a01d7fb2"
+dependencies = [
+ "async-trait",
+ "bb8",
+ "redis 0.22.1",
 ]
 
 [[package]]
@@ -895,6 +906,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "prebid-cache-rs"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "async-trait",
+ "bb8-redis 0.12.0",
+ "enum_dispatch",
+ "snap",
+ "tokio",
+ "tokio-test",
+]
+
+[[package]]
 name = "proc-macro2"
 version = "1.0.39"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -968,11 +992,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "redis"
+version = "0.22.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "513b3649f1a111c17954296e4a3b9eecb108b766c803e2b99f179ebe27005985"
+dependencies = [
+ "async-trait",
+ "bytes",
+ "combine",
+ "futures-util",
+ "itoa 1.0.2",
+ "percent-encoding",
+ "pin-project-lite",
+ "ryu",
+ "tokio",
+ "tokio-util 0.7.3",
+ "url",
+]
+
+[[package]]
 name = "redis-pools"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "bb8-redis",
+ "bb8-redis 0.11.0",
  "serde",
  "serde_json",
  "tokio",
@@ -1192,6 +1235,12 @@ name = "smallvec"
 version = "1.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f2dd574626839106c320a323308629dcb1acfc96e32a8cba364ddc61ac23ee83"
+
+[[package]]
+name = "snap"
+version = "1.0.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "45456094d1983e2ee2a18fdfebce3189fa451699d0502cb8e3b49dba5ba41451"
 
 [[package]]
 name = "socket2"

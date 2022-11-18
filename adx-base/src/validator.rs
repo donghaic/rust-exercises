@@ -18,7 +18,7 @@ pub struct BidValidatorChain {
 impl BidValidatorChain {
     pub fn new() -> Self {
         let mut validators = Self { validators: Vec::default() };
-        validators.add(BidFloorValidator {}.into());
+        validators.add(BidFloorValidator{}.into());
         return validators;
     }
 

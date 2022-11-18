@@ -8,8 +8,9 @@ edition = "2021"
 [workspace]
 members = [
     "example01",
-    "redis-pools",
+                       "redis-pools",
     "adx-base",
+    "prebid-cache-rs",
 ]
 
 [dependencies]
