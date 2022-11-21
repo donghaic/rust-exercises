@@ -1,3 +1,4 @@
-mod backend;
-mod config;
-mod metrics;
+pub mod backend;
+pub mod config;
+pub mod metrics;
+pub mod endpoints;

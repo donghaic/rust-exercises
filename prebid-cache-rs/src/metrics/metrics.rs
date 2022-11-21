@@ -3,6 +3,10 @@ use std::time::Duration;
 pub struct Metrics {}
 
 impl Metrics {
+    pub fn new() -> Metrics {
+        Metrics {}
+    }
+
     pub fn record_get_backend_total(&self) {
         println!("record_get_backend_total")
     }

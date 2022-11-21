@@ -1,14 +1,16 @@
+#[derive(Debug, Clone)]
 pub enum BackendType {
     Memory,
     Redis,
 }
 
-
+#[derive(Debug, Clone)]
 pub struct Backend {
-    backend_type: BackendType,
-    redis: Redis,
+    pub(crate) backend_type: BackendType,
+    pub(crate) redis: Option<Redis>,
 }
 
+#[derive(Debug, Clone)]
 pub struct Redis {
     pub(crate) host: String,
     pub(crate) port: u16,
