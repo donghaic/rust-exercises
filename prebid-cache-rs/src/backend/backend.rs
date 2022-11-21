@@ -6,7 +6,7 @@ use crate::backend::redis::Redis;
 
 #[async_trait]
 pub trait Backend: Send + Sync {
-    async fn put(&mut self, key: &str, value: &[u8], ttl: u32) -> Result<()>;
+    async fn put(&self, key: &str, value: &[u8], ttl: u32) -> Result<()>;
 
     async fn get(&self, key: &str) -> Result<Option<Vec<u8>>>;
 }

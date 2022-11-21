@@ -37,7 +37,7 @@ impl Redis {
 
 #[async_trait]
 impl Backend for Redis {
-    async fn put(&mut self, key: &str, value: &[u8], ttl: u32) -> Result<()> {
+    async fn put(&self, key: &str, value: &[u8], ttl: u32) -> Result<()> {
         let mut conn = self.pool.get().await.unwrap();
         conn.set_ex(key, value, ttl as usize).await.map_err(|e| e.into())
     }

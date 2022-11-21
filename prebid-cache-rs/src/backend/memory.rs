@@ -6,9 +6,9 @@ use async_trait::async_trait;
 
 use crate::backend::backend::Backend;
 
-type MemoryInner = Arc<RwLock<HashMap<String, Vec<u8>>>>;
+pub type MemoryInner = Arc<RwLock<HashMap<String, Vec<u8>>>>;
 
-pub(crate) struct Memory {
+pub struct Memory {
     memory: MemoryInner,
 }
 
@@ -22,7 +22,7 @@ impl Memory {
 
 #[async_trait]
 impl Backend for Memory {
-    async fn put(&mut self, key: &str, value: &[u8], _ttl: u32) -> anyhow::Result<()> {
+    async fn put(&self, key: &str, value: &[u8], _ttl: u32) -> anyhow::Result<()> {
         self.memory.write().unwrap().insert(key.to_string(), value.to_vec());
         Ok(())
     }

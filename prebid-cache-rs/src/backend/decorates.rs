@@ -23,7 +23,7 @@ impl<T> WithMetricsBackend<T> where T: Backend {
 
 #[async_trait]
 impl<T> Backend for WithMetricsBackend<T> where T: Backend {
-    async fn put(&mut self, key: &str, value: &[u8], ttl: u32) -> anyhow::Result<()> {
+    async fn put(&self, key: &str, value: &[u8], ttl: u32) -> anyhow::Result<()> {
         println!("WithMetricsBackend set ");
         self.metrics.record_get_backend_total();
         self.delegate.put(key, value, ttl).await
@@ -50,7 +50,7 @@ impl<T> SizeCappedBackend<T> where T: Backend {
 
 #[async_trait]
 impl<T> Backend for SizeCappedBackend<T> where T: Backend {
-    async fn put(&mut self, key: &str, value: &[u8], ttl: u32) -> anyhow::Result<()> {
+    async fn put(&self, key: &str, value: &[u8], ttl: u32) -> anyhow::Result<()> {
         println!("SizeCappedBackend set ");
         let len = value.len();
         anyhow::ensure!(len > self.max_size || len == 0, "SizeCappedBackend");
@@ -75,7 +75,7 @@ impl<T> SnappyCompressorBackend<T> where T: Backend {
 
 #[async_trait]
 impl<T> Backend for SnappyCompressorBackend<T> where T: Backend {
-    async fn put(&mut self, key: &str, value: &[u8], ttl: u32) -> anyhow::Result<()> {
+    async fn put(&self, key: &str, value: &[u8], ttl: u32) -> anyhow::Result<()> {
         let compressed = frame_press(value)?;
         self.delegate.put(key, &compressed, ttl).await
     }
