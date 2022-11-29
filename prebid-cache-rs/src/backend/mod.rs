@@ -9,12 +9,11 @@ use crate::backend::memory::Memory;
 use crate::config::config::Configuration;
 use crate::metrics::Metrics;
 
-pub mod memory;
 pub mod backend;
-pub mod redis;
 mod decorates;
+pub mod memory;
+pub mod redis;
 
-
-pub fn build(cfg: Configuration, metrics: Arc<Metrics>) -> Result<Box<dyn Backend>> {
+pub fn build(cfg: &Configuration, metrics: Arc<Metrics>) -> Result<Box<dyn Backend>> {
     Ok(Box::new(Memory::new()))
 }

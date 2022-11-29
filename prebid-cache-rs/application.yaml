@@ -1,5 +1,5 @@
-port: 2424
-admin_port: 2525
+port: 8080
+admin_port: 18080
 log:
   level: "info"
 rate_limiter:
