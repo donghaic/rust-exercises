@@ -366,6 +366,9 @@ dependencies = [
 [[package]]
 name = "crate-test"
 version = "0.1.0"
+dependencies = [
+ "dyn-clone",
+]
 
 [[package]]
 name = "crossbeam-channel"
@@ -432,6 +435,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "56899898ce76aaf4a0f24d914c97ea6ed976d42fec6ad33fcbb0a1103e07b2b0"
 
 [[package]]
+name = "dyn-clone"
+version = "1.0.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "23d2f3407d9a573d666de4b5bdf10569d73ca9478087346697dcbae6244bfbcd"
+
+[[package]]
 name = "encoding_rs"
 version = "0.8.31"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -473,6 +482,7 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "bytes",
+ "dyn-clone",
  "enum_dispatch",
  "moka",
 ]

@@ -10,4 +10,4 @@ enum_dispatch = "0.3.8"
 anyhow = "1.0"
 bytes = "1"
 moka = { version = "0.9", features = ["future"] }
-
+dyn-clone = "1.0.14"

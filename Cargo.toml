@@ -14,3 +14,4 @@ members = [
 ]
 
 [dependencies]
+dyn-clone = "1.0.14"
